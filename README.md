@@ -16,6 +16,7 @@ SM8550 layer cannot be reused.
 | `soc.toml` | SoC identity, hardware-data source and the component set |
 | `configs/sm8450.config` | SoC kernel fragment (empty by design for stage 0) |
 | `dts/sm8450.dtsi` | SoC resources: CPUs, PSCI, GIC, UFS, Adreno 730/GMU/SMMU |
+| `kits/Sm8450Platform/GccUfs.h` | SM8450 GCC UFS clock/GDSC register facts (for the storage driver) |
 | `patches/xnu`, `patches/xnu-12377` | Ordered XNU patch series for this SoC |
 
 Values come from mainline Linux `arch/arm64/boot/dts/qcom/sm8450.dtsi` at

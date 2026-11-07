@@ -1,2 +1,6 @@
 # SoC patch paths for xnu-12377, one per line in application order.
+# sheng-platform-power inserts the board PMGR hook the shared OS series
+# (zzz-boot-progress.patch) uses as patch context. XNU_SHENG_PMGR is unset
+# for cupid, so the hook compiles out; the hunk is still required.
+sheng-platform-power.patch
 native-smp-secondary.patch
