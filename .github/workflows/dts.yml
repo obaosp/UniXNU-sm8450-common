@@ -1,0 +1,36 @@
+name: dts
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dtc
+        run: sudo apt-get update && sudo apt-get install -y device-tree-compiler python3
+
+      - name: Validate soc.toml
+        run: python3 -c 'import tomllib; d=tomllib.load(open("soc.toml","rb")); assert d["schema_version"]==2; assert d["soc"]["name"]=="sm8450"'
+
+      - name: Compile the SoC device tree
+        run: |
+          printf '/dts-v1/;\n/include/ "sm8450.dtsi"\n' > /tmp/sm8450.dts
+          dtc -I dts -O dtb -o /tmp/sm8450.dtb -i dts /tmp/sm8450.dts
+
+      - name: Check the patch series lists existing patches
+        run: |
+          for series in patches/xnu/series patches/xnu-12377/series; do
+            dir=$(dirname "$series")
+            while read -r line; do
+              case "$line" in ''|'#'*) continue;; esac
+              test -f "$dir/$line" || { echo "missing patch: $dir/$line"; exit 1; }
+            done < "$series"
+          done
+          echo "patch series ok"

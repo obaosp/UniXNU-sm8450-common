@@ -1,0 +1,19 @@
+schema_version = 2
+
+[soc]
+name = "sm8450"
+description = "Qualcomm SM8450 (Snapdragon 8 Gen 1, waipio)"
+
+# Hardware values in dts/sm8450.dtsi are transcribed from this revision of the
+# mainline SM8450 device tree, not from memory:
+#   arch/arm64/boot/dts/qcom/sm8450.dtsi
+# Commit f1586048 ("arm64: dts: qcom: sm8450: Add GCC CX power domain", 2026-09-24).
+source_repository = "https://github.com/torvalds/linux"
+source_revision = "f1586048fb1dabb91c82fbe11557e505587973d3"
+
+[components]
+# The arm64e arch profile already selects these; listing them here states that
+# the SoC layer needs no SoC-specific driver beyond the generic ARM64 ones.
+# Adreno 730 / GMU 730 are described in the DTSI but stay disabled: no
+# Adreno730 component exists yet (see the device porting record, gpu area).
+include = ["ArmCpu", "ArmDTPlatform"]
