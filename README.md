@@ -16,6 +16,10 @@ This repository is new. The upstream project ships `UniXNU-sm8550-common` only,
 and SM8450 has different UFS PHY, GPU/GMU and clock-controller revisions, so the
 SM8550 layer cannot be reused.
 
+The cupid port that consumes this layer targets **iOS 26.5.2 (23F84)**. See
+[why iOS 26, not iOS 27](https://github.com/obaosp/UniXNU-cupid#why-ios-26-not-ios-27)
+for the 24A446/13432 mismatch that caused the switch.
+
 ## Scope
 
 | Path | Contents |
