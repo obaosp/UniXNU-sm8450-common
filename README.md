@@ -1,3 +1,10 @@
+> [!WARNING]
+> **Work in progress — used by the unfinished cupid port.**
+>
+> Shared SM8450 support is under active development and does not produce a
+> bootable system on its own. Kernel panics and build failures are expected.
+> Please do not open issues for them until this notice is removed.
+
 # UniXNU SM8450 common
 
 Shared Qualcomm SM8450 (Snapdragon 8 Gen 1, *waipio*) platform support for
